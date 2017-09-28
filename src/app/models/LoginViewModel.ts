@@ -1,4 +1,3 @@
-
 export class LoginVM {
     constructor(
         public username: string,

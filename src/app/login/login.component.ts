@@ -1,6 +1,5 @@
 import { Component, 
-  OnInit,
-  ViewChild 
+  OnInit
 } from '@angular/core';
 import { AngularService } from '../../angular/service';
 import { 
@@ -13,6 +12,7 @@ import { LoginService } from '../login.service';
 import { LoginVM } from '../models/LoginViewModel'
 import { Observable } from 'rxjs/Observable'
 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html'
@@ -21,7 +21,7 @@ import { Observable } from 'rxjs/Observable'
 export class LoginComponent implements OnInit 
 {
   ViewModel: LoginVM = LoginVM.fromJson({});
-
+  error: string;
   loginForm: FormGroup;
   loggedIn:  string = null;
   username = new FormControl('', [
@@ -61,11 +61,22 @@ export class LoginComponent implements OnInit
   }
 
   save() {
-    this._angularService.setDirective(2);
-    //console.log('form.username = ' + form.username.value + '   this.password = ' + this.password.value);
-    console.log('this.username = ' + this.username.value + '   this.password = ' + this.password.value);
-    console.log('this.ViewModel.username = ' + this.ViewModel.username + '   this.ViewModel.password = ' + this.ViewModel.password);
-    this._loginService.login(this.username.value, this.password.value);
-    //this._loginService.login(this.ViewModel.username, this.ViewModel.password); // undefined
+    if(this.isUsernameValid() && this.isPasswordValid() ){
+      this._angularService.setDirective(2);
+      this._loginService.login(this.ViewModel.username, this.ViewModel.password);
+    } 
   }
+
+  isUsernameValid(){
+    return this.username.value.length > 0;
+  }
+
+  isPasswordValid(){
+    return this.password.value.length > 0;
+  }
+
+  isValid(){ // Needs more work
+    return this.loginForm.valid;
+  }
+
 }

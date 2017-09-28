@@ -1,6 +1,44 @@
-<h2>Login</h2>
-<form class="col-md-8">
-  <input placeholder="Login"    [formControl] = "username" />
-  <input placeholder="Password" [formControl] = "password"  type="password" />
-  <button type="Submit" (click)="save()" >Submit</button>
-</form>
+<div class="wrapper wrapper-content container">
+
+  <div class="row">
+    <div class="col-sm-12">
+      <h4>Login</h4>
+    </div>
+  </div>
+
+  <form class="form-horizontal" [formGroup]="loginForm" novalidate >
+
+ 
+    <div class="form-group" [ngClass]="{'has-danger': !isUsernameValid()}">
+        <label for="username" class='control-label col-sm-2'>Username</label>
+        <div class='col-sm-5'>
+            <input class="form-control" id="username" placeholder="Login" type="text"
+                    [formControl]="username" required
+                    >
+            <div class='col-sm-8 col-sm-offset-2' *ngIf='isUsernameValid() == false'>
+                <span class='text-danger'>Username is required</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group" [ngClass]="{'has-danger': !isPasswordValid() }">
+        <label for="password" class='control-label col-sm-2'>Password</label>
+        <div class='col-sm-5'>
+            <input  class="form-control" id="password" placeholder="Password" type="text"
+                    [formControl]="password" required
+                    >
+            <div class='col-sm-8 col-sm-offset-2' *ngIf='isPasswordValid() == false'>
+                <span class='text-danger'>Password is required</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class='col-sm-8 col-sm-offset-2'>
+            <button type="Submit" (click)="save()"  >Submit</button>
+        </div>
+    </div>
+
+  </form>
+
+</div>
