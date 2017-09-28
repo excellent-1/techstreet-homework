@@ -3,43 +3,69 @@ import { Component,
   ViewChild 
 } from '@angular/core';
 import { AngularService } from '../../angular/service';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { 
+  FormBuilder, 
+  FormGroup,
+  FormControl,
+  Validators
+ } from '@angular/forms';
 import { LoginService } from '../login.service';
+import { LoginVM } from '../models/LoginViewModel'
+import { Observable } from 'rxjs/Observable'
 
 @Component({
   selector: 'app-login',
-  templateUrl: './login.component.html',
-  //template: '<h2>Login</h2> <form class="col-md-8">   <input placeholder="Login" />  <input placeholder="Password" type="password" />   <button type="Submit">Submit</button>  </form>'
-  //template: '<login-component> </login-component>'
-  //, styleUrls: ['./login.component.css']
-  //, directives: [LoginComponent]
+  templateUrl: './login.component.html'
 })
 
 export class LoginComponent implements OnInit 
 {
-  @ViewChild('loginComponent') public loginComponent;
+  ViewModel: LoginVM = LoginVM.fromJson({});
+
   loginForm: FormGroup;
   loggedIn:  string = null;
+  username = new FormControl('', [
+    Validators.required
+    ]);
+  password = new FormControl('', [
+    Validators.required
+    ]);
 
   constructor(
-    private _service: AngularService,
-    private _builder: FormBuilder,
+    private _angularService: AngularService,
+    private _formBuilder: FormBuilder,
     private _loginService: LoginService
   ) {
-    this.loginForm = this._builder.group({
-      username: '',
-      password: ''
+
+    // Set up validation with form builder using only values that will display on UI
+    this.loginForm = this._formBuilder.group({
+      username: this.username,
+      password: this.password
     });
   }
 
   ngOnInit() {
+    this.initForm();
     this.loggedIn = localStorage.getItem('currentUser');
-    this._service.setDirective(1);
+    this._angularService.setDirective(1);
   }
+
+  initForm() {
+    this.loginForm.valueChanges
+    .filter(() => this.loginForm.valid)
+    .map( (form: any) => {
+      this.ViewModel.username = form.username;
+      this.ViewModel.password = form.password;
+    })
+    .subscribe();
+  }
+
   save() {
-    debugger;
-    this._service.setDirective(2);
-    this._loginService.login('', '');
+    this._angularService.setDirective(2);
+    //console.log('form.username = ' + form.username.value + '   this.password = ' + this.password.value);
+    console.log('this.username = ' + this.username.value + '   this.password = ' + this.password.value);
+    console.log('this.ViewModel.username = ' + this.ViewModel.username + '   this.ViewModel.password = ' + this.ViewModel.password);
+    this._loginService.login(this.username.value, this.password.value);
+    //this._loginService.login(this.ViewModel.username, this.ViewModel.password); // undefined
   }
 }
-

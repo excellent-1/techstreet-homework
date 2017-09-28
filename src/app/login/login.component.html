@@ -1,6 +1,6 @@
 <h2>Login</h2>
 <form class="col-md-8">
-  <input placeholder="Login" />
-  <input placeholder="Password" type="password" />
+  <input placeholder="Login"    [formControl] = "username" />
+  <input placeholder="Password" [formControl] = "password"  type="password" />
   <button type="Submit" (click)="save()" >Submit</button>
 </form>
