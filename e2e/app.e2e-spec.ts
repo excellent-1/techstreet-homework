@@ -7,8 +7,8 @@ describe('techstreet-homework App', () => {
     page = new TechstreetHomeworkPage();
   });
 
-  it('should display message saying app works', () => {
+  it('should display message saying Techstreet Homework', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('app works!');
+    expect(page.getParagraphText()).toEqual('Techstreet Homework');
   });
 });
