@@ -14,8 +14,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
   //, directives: [LoginComponent]
 })
 
-export class LoginComponent 
-implements OnInit 
+export class LoginComponent implements OnInit 
 {
   @ViewChild('loginComponent') public loginComponent;
   loginForm: FormGroup;
@@ -36,8 +35,8 @@ implements OnInit
     this._service.setDirective(1);
   }
   save() {
+    debugger;
     this._service.setDirective(2);
   }
 }
-
 

@@ -5,7 +5,8 @@ import { AngularService } from './service';
   selector: 'ng-msg-comp',
   template: `<span><ng-content></ng-content></span>`
 })
-export class AngularMessageComponent implements OnInit {
+export class AngularMessageComponent //implements OnInit 
+{
   public directive: number;
   constructor(private _service: AngularService) 
   { 
