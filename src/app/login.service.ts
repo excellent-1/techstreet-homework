@@ -6,7 +6,7 @@ export class LoginService {
   constructor(private _service: AngularService) {}
 
   login(username?, password?) {
-    var currentUser;
+    let currentUser;
     if ((username === 'Techstreet') && (password === 'homework')) {
       currentUser = { username: username, password: password };
       this._service.setDirective(4);

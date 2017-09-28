@@ -3,10 +3,10 @@ import { Pipe, PipeTransform } from '@angular/core';
 @Pipe({ name: 'piped' })
 export class Piped implements PipeTransform {
   transform(value: number = null): string {
-    var currentUserString = localStorage.getItem('currentUser');
-    var currentUser = currentUserString && JSON.parse(currentUserString);
-    var username = currentUser && currentUser['username'];
-    var piped;
+    let currentUserString = localStorage.getItem('currentUser');
+    let currentUser = currentUserString && JSON.parse(currentUserString);
+    let username = currentUser && currentUser['username'];
+    let piped;
     switch(value) {
       case 0:
         piped = 'We need to be able to log in to the app.  Add the login component to this template.  '
