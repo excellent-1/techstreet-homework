@@ -10,6 +10,8 @@ import { LoginService } from './login.service';
 import { LoginComponent } from './login/login.component';
 import 'rxjs/add/operator/filter'; // To get rid of Error: [ts] Property 'filter' does not exist on type 'Observable<any>'.
 import { Pipe, PipeTransform } from '@angular/core';
+import { AngularMessageComponent } from '../angular/message.component';
+
 // import { AppRoutingModule } from './app-routing/app-routing.module';
 
 /* Remember the following:  
