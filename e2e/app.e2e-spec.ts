@@ -1,14 +1,14 @@
-import { TechstreetHomeworkPage } from './app.po';
+import { HomeworkPage } from './app.po';
 
-describe('techstreet-homework App', () => {
-  let page: TechstreetHomeworkPage;
+describe('homework App', () => {
+  let page: HomeworkPage;
 
   beforeEach(() => {
-    page = new TechstreetHomeworkPage();
+    page = new HomeworkPage();
   });
 
-  it('should display message saying Techstreet Homework', () => {
+  it('should display message saying Homework', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('Techstreet Homework');
+    expect(page.getParagraphText()).toEqual('Homework');
   });
 });
