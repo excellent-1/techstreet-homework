@@ -11,7 +11,6 @@ import {
 import { LoginService } from '../login.service';
 import { LoginVM } from '../models/LoginViewModel'
 import { Observable } from 'rxjs/Observable'
-
 import 'rxjs'; // To get rid of error during ng test >> Error: [ts] Property 'filter' does not exist on type 'Observable<any>' /src/app/login/login.component.ts (56,6): Property 'map' does not exist on type 'Observable<any>'..
 
 @Component({
