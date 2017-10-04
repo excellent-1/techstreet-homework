@@ -1,5 +1,4 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { InitModule } from '../angular/init';
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
@@ -10,7 +9,8 @@ import { LoginService } from './login.service';
 import { LoginComponent } from './login/login.component';
 import 'rxjs/add/operator/filter'; // To get rid of Error: [ts] Property 'filter' does not exist on type 'Observable<any>'.
 import { Pipe, PipeTransform } from '@angular/core';
-import { AngularMessageComponent } from '../angular/message.component';
+import { Piped } from '../angular/pipe';
+import { InitModule } from '../angular/init';
 
 // import { AppRoutingModule } from './app-routing/app-routing.module';
 
@@ -20,9 +20,10 @@ import { AngularMessageComponent } from '../angular/message.component';
 @NgModule({
   declarations: [ AppComponent, LoginComponent
     ],
-  imports: [ BrowserModule, InitModule, FormsModule, ReactiveFormsModule, HttpModule, LoginModule
+  imports: [ BrowserModule, InitModule, FormsModule, ReactiveFormsModule, HttpModule, LoginModule,
+      InitModule
   ],
-  providers: [ UserService, LoginService
+  providers: [ UserService, LoginService, 
   ],
   bootstrap: [ AppComponent],
   schemas: [
